@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const router = require("./routers/routers");
 const connection = require("./database/connection");
 
 const APP_PORT = process.env.APP_PORT;
@@ -9,6 +10,7 @@ class Server {
     constructor(server = express()) {
         this.middlewares(server);
         this.database();
+        server.use(router);
         this.initializeServer(server);
     }
 

@@ -12,6 +12,19 @@ const startupServices = {
 
             throw new Error('ERRO_CRIAR_STARTUP');
         }
+    },
+
+    async findAll() {
+        try {
+            const startups = await ModelStartups.findAll({
+                attributes: {
+                    exclude: ['id', 'createdAt', 'updatedAt']
+                }
+            });
+            return startups;
+        } catch (error) {
+            throw new Error('ERRO_LISTAR_STARTUPS');
+        }
     }
 }
 

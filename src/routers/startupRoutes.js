@@ -11,4 +11,9 @@ router.post(
     startupController.create
 );
 
+router.get(
+    '/',
+    startupController.findAll
+);
+
 module.exports = router;

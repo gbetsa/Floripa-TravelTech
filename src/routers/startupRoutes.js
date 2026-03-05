@@ -21,4 +21,10 @@ router.get(
     startupController.findOne
 );
 
+router.put(
+    '/:id',
+    validate(startupSchema.partial()),
+    startupController.update
+);
+
 module.exports = router;

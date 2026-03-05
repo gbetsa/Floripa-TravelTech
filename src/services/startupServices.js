@@ -41,6 +41,19 @@ const startupServices = {
         } catch (error) {
             throw new Error('ERRO_LISTAR_STARTUP');
         }
+    },
+
+    async update(id, data) {
+        try {
+            const startup = await ModelStartups.update(data, {
+                where: {
+                    id
+                }
+            });
+            return startup;
+        } catch (error) {
+            throw new Error('ERRO_ATUALIZAR_STARTUP');
+        }
     }
 }
 

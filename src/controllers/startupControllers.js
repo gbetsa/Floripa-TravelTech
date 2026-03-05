@@ -48,11 +48,38 @@ const startupControllers = {
         } catch (error) {
             if (error.message === 'ERRO_LISTAR_STARTUP') {
                 return res.status(404).json({
-                    message: 'Nenhuma startup cadastrada'
+                    message: 'Não foi possível encontrar a startup'
                 });
             }
             return res.status(500).json({
                 message: 'Erro interno ao listar startup'
+            });
+        }
+    },
+
+    async update(req, res) {
+        try {
+            const [updatedRows] = await startupServices.update(req.params.id, req.body);
+
+            if (updatedRows === 0) {
+                return res.status(404).json({
+                    message: 'Não foi possível encontrar a startup'
+                });
+            }
+
+            return res.status(200).json({
+                message: 'Startup atualizada com sucesso',
+                // Dados atualizados
+                data: req.body
+            });
+        } catch (error) {
+            if (error.message === 'ERRO_ATUALIZAR_STARTUP') {
+                return res.status(404).json({
+                    message: 'Não foi possível encontrar a startup'
+                });
+            }
+            return res.status(500).json({
+                message: 'Erro interno ao atualizar startup'
             });
         }
     }

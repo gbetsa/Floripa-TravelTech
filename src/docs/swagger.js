@@ -1,6 +1,7 @@
 const swaggerJsdoc = require('swagger-jsdoc');
 APP_PORT = process.env.APP_PORT;
 
+// Configuração do Swagger
 const options = {
     definition: {
         openapi: '3.0.0',

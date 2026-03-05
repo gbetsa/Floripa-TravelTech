@@ -6,12 +6,13 @@ const connection = require("./database/connection");
 const APP_PORT = process.env.APP_PORT;
 const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
 
+// Classe que representa o servidor
 class Server {
     constructor(server = express()) {
-        this.middlewares(server);
-        this.database();
-        server.use(router);
-        this.initializeServer(server);
+        this.middlewares(server); // Configura middlewares globais
+        this.database();     // Inicializa conexão com o banco
+        server.use(router);  // Carrega as rotas da aplicação
+        this.initializeServer(server); // Inicia o servidor na porta definida
     }
 
     middlewares(server) {
@@ -20,7 +21,8 @@ class Server {
             const allowedOriginsArray = ALLOWED_ORIGINS.split(',');
             server.use(cors({
                 origin: function (origin, callback) {
-                    if (!origin) return callback(null, true); // Requisições sem origem (ex: Postman)
+                    // Permite requisições sem origem (como ferramentas de teste) ou origens na lista permitida
+                    if (!origin) return callback(null, true);
 
                     if (allowedOriginsArray.indexOf(origin) !== -1) {
                         callback(null, true);
@@ -52,7 +54,7 @@ class Server {
     async database() {
         try {
             console.log('Iniciando conexão com o banco de dados.');
-            await connection.authenticate();
+            await connection.authenticate(); // Valida as credenciais do banco
             console.log('Conexão com o banco de dados iniciada com sucesso.');
         } catch (error) {
             console.log("Erro ao iniciar conexão com o banco de dados: " + error);

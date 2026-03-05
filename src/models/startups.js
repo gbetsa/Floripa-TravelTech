@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const connection = require('../database/connection');
 
+// Definição do modelo de startups
 const ModelStartups = connection.define('Startup', {
     id: {
         type: DataTypes.UUID,

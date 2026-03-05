@@ -1,10 +1,12 @@
 const startupServices = require('../services/startupServices');
 
 const startupControllers = {
+    // Controller para criar uma nova startup
     async create(req, res) {
         try {
             const data = req.body;
 
+            // Delega a criação para a camada de serviço
             const startup = await startupServices.create(data);
 
             return res.status(201).json({
@@ -25,10 +27,12 @@ const startupControllers = {
         }
     },
 
+    // Controller para listar todas as startups com filtros opcionais
     async findAll(req, res) {
         try {
-            const filters = req.query;
+            const filters = req.query; // Captura filtros da query string
 
+            // Busca startups aplicando os filtros recebidos
             const startups = await startupServices.findAll(filters);
             return res.status(200).json(startups);
         } catch (error) {
@@ -48,6 +52,7 @@ const startupControllers = {
         }
     },
 
+    // Controller para buscar uma startup pelo ID
     async findOne(req, res) {
         try {
             const startup = await startupServices.findOne(req.params.id);
@@ -64,6 +69,7 @@ const startupControllers = {
         }
     },
 
+    // Controller para atualizar uma startup pelo ID
     async update(req, res) {
         try {
             const [updatedRows] = await startupServices.update(req.params.id, req.body);
@@ -91,6 +97,7 @@ const startupControllers = {
         }
     },
 
+    // Controller para remover uma startup pelo ID
     async remove(req, res) {
         try {
             const startup = await startupServices.remove(req.params.id);
@@ -109,6 +116,7 @@ const startupControllers = {
         }
     },
 
+    // Controller para gerar estatísticas das startups
     async stats(req, res) {
         try {
             const stats = await startupServices.stats();
@@ -125,6 +133,7 @@ const startupControllers = {
         }
     },
 
+    // Controller para buscar startups por nome
     async search(req, res) {
         try {
 

@@ -5,38 +5,45 @@ const validate = require('../middlewares/validate');
 const startupSchema = require('../validations/startupSchema');
 const startupController = require('../controllers/startupControllers');
 
+// Rota para obter estatísticas gerais das startups
 router.get(
     '/stats',
     startupController.stats
 );
 
+// Rota para busca filtrada de startups por nome
 router.get(
     '/search',
     startupController.search
 );
 
+// Rota para criação de uma nova startup com validação de esquema
 router.post(
     '/',
     validate(startupSchema),
     startupController.create
 );
 
+// Rota para listagem de todas as startups com filtros opcionais
 router.get(
     '/',
     startupController.findAll
 );
 
+// Rota para busca de uma startup pelo ID
 router.get(
     '/:id',
     startupController.findOne
 );
 
+// Rota para atualização parcial de uma startup (campos opcionais)
 router.put(
     '/:id',
     validate(startupSchema.partial()),
     startupController.update
 );
 
+// Rota para exclusão de uma startup pelo ID
 router.delete(
     '/:id',
     startupController.remove

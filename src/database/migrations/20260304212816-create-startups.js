@@ -15,6 +15,11 @@ module.exports = {
         allowNull: false
       },
 
+      descricao: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+
       cnpj: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -35,6 +40,21 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'Florianópolis'
+      },
+
+      segmento_turismo: {
+        type: Sequelize.ENUM(
+          'Hospedagem',
+          'Transporte',
+          'Experiencias',
+          'Marketplace',
+          'Tecnologia_Hotelaria',
+          'Tecnologia_Agencias',
+          'Eventos',
+          'Turismo_Sustentavel',
+          'Outro'
+        ),
+        allowNull: false
       },
 
       modelo_negocio: {

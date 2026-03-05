@@ -14,6 +14,11 @@ const ModelStartups = connection.define('Startup', {
         allowNull: false
     },
 
+    descricao: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+
     cnpj: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -34,6 +39,21 @@ const ModelStartups = connection.define('Startup', {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'Florianópolis'
+    },
+
+    segmento_turismo: {
+        type: DataTypes.ENUM(
+            'Hospedagem',
+            'Transporte',
+            'Experiencias',
+            'Marketplace',
+            'Tecnologia_Hotelaria',
+            'Tecnologia_Agencias',
+            'Eventos',
+            'Turismo_Sustentavel',
+            'Outro'
+        ),
+        allowNull: false
     },
 
     modelo_negocio: {

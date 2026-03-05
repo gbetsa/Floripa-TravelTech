@@ -39,6 +39,22 @@ const startupControllers = {
                 message: 'Erro interno ao listar startups'
             });
         }
+    },
+
+    async findOne(req, res) {
+        try {
+            const startup = await startupServices.findOne(req.params.id);
+            return res.status(200).json(startup);
+        } catch (error) {
+            if (error.message === 'ERRO_LISTAR_STARTUP') {
+                return res.status(404).json({
+                    message: 'Nenhuma startup cadastrada'
+                });
+            }
+            return res.status(500).json({
+                message: 'Erro interno ao listar startup'
+            });
+        }
     }
 }
 

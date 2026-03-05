@@ -16,4 +16,9 @@ router.get(
     startupController.findAll
 );
 
+router.get(
+    '/:id',
+    startupController.findOne
+);
+
 module.exports = router;

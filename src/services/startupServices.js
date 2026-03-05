@@ -77,6 +77,9 @@ const startupServices = {
                     exclude: ['createdAt', 'updatedAt']
                 }
             });
+            if (!startup) {
+                throw new Error('ERRO_LISTAR_STARTUP');
+            }
             return startup;
         } catch (error) {
             throw new Error('ERRO_LISTAR_STARTUP');
@@ -90,6 +93,9 @@ const startupServices = {
                     id
                 }
             });
+            if (startup === 0) {
+                throw new Error('ERRO_ATUALIZAR_STARTUP');
+            }
             return startup;
         } catch (error) {
             throw new Error('ERRO_ATUALIZAR_STARTUP');
@@ -103,6 +109,9 @@ const startupServices = {
                     id
                 }
             });
+            if (startup === 0) {
+                throw new Error('ERRO_REMOVER_STARTUP');
+            }
             return startup;
         } catch (error) {
             throw new Error('ERRO_REMOVER_STARTUP');

@@ -10,6 +10,11 @@ router.get(
     startupController.stats
 );
 
+router.get(
+    '/search',
+    startupController.search
+);
+
 router.post(
     '/',
     validate(startupSchema),

@@ -1,6 +1,6 @@
 const ModelStartups = require('../models/startups');
 
-const { Sequelize } = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 
 const startupServices = {
     async create(data) {
@@ -130,6 +130,24 @@ const startupServices = {
 
         } catch (error) {
             throw new Error('ERRO_GERAR_ESTATISTICAS');
+        }
+    },
+
+    async searchByName(nome) {
+        try {
+            const startups = await ModelStartups.findAll({
+                where: {
+                    nome: {
+                        [Op.iLike]: `%${nome}%`
+                    }
+                },
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            });
+            return startups;
+        } catch (error) {
+            throw new Error('ERRO_BUSCAR_STARTUP');
         }
     }
 }

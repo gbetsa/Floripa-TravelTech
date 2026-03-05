@@ -118,6 +118,28 @@ const startupControllers = {
                 message: 'Erro interno ao gerar estatísticas'
             });
         }
+    },
+
+    async search(req, res) {
+        try {
+
+            const { nome } = req.query;
+
+            if (!nome) {
+                return res.status(400).json({
+                    error: 'PARAMETRO_NOME_OBRIGATORIO'
+                });
+            }
+
+            const startups = await startupServices.searchByName(nome);
+
+            return res.json(startups);
+
+        } catch (error) {
+            return res.status(500).json({
+                error: error.message
+            });
+        }
     }
 }
 

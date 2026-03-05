@@ -34,12 +34,21 @@ const startupServices = {
                 where.modelo_negocio = filters.modelo_negocio;
             }
 
+            const page = parseInt(filters.page) || 1;
+            const limit = parseInt(filters.limit) || 10;
+            const offset = (page - 1) * limit;
+
+            const orderField = filters.orderBy || 'createdAt';
+            const orderDirection = filters.orderDirection || 'DESC';
 
             const startups = await ModelStartups.findAll({
                 where,
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
-                }
+                },
+                order: [[orderField, orderDirection]],
+                limit,
+                offset
             });
 
             if (startups.length === 0) {

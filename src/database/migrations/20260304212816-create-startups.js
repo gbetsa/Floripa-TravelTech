@@ -37,6 +37,21 @@ module.exports = {
         defaultValue: 'Florianópolis'
       },
 
+      segmento_turismo: {
+        type: Sequelize.ENUM(
+          'Hospedagem',
+          'Transporte',
+          'Experiencias',
+          'Marketplace',
+          'Tecnologia_Hotelaria',
+          'Tecnologia_Agencias',
+          'Eventos',
+          'Turismo_Sustentavel',
+          'Outro'
+        ),
+        allowNull: false
+      },
+
       modelo_negocio: {
         type: Sequelize.STRING,
         allowNull: false

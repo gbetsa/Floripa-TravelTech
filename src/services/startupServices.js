@@ -32,6 +32,10 @@ const startupServices = {
                 where.ano_fundacao = filters.ano_fundacao;
             }
 
+            if (filters.segmento_turismo) {
+                where.segmento_turismo = filters.segmento_turismo;
+            }
+
             if (filters.modelo_negocio) {
                 where.modelo_negocio = filters.modelo_negocio;
             }
@@ -55,6 +59,10 @@ const startupServices = {
 
             return startups;
         } catch (error) {
+            if (error.name === 'SequelizeDatabaseError') {
+                throw new Error('ERRO_FILTRO_INVALIDO');
+            }
+
             throw new Error('ERRO_LISTAR_STARTUPS');
         }
     },
@@ -122,10 +130,19 @@ const startupServices = {
                 group: ['status']
             });
 
+            const porSegmento = await ModelStartups.findAll({
+                attributes: [
+                    'segmento_turismo',
+                    [Sequelize.fn('COUNT', Sequelize.col('segmento_turismo')), 'total']
+                ],
+                group: ['segmento_turismo']
+            });
+
             return {
                 total_startups: total,
                 por_estagio: porEstagio,
-                por_status: porStatus
+                por_status: porStatus,
+                por_segmento: porSegmento
             };
 
         } catch (error) {

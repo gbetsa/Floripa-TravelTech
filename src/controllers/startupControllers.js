@@ -32,6 +32,11 @@ const startupControllers = {
             const startups = await startupServices.findAll(filters);
             return res.status(200).json(startups);
         } catch (error) {
+            if (error.message === 'ERRO_FILTRO_INVALIDO') {
+                return res.status(400).json({
+                    message: 'Filtro inválido'
+                });
+            }
             if (error.message === 'ERRO_LISTAR_STARTUPS') {
                 return res.status(404).json({
                     message: 'Nenhuma startup cadastrada'

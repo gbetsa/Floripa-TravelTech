@@ -24,6 +24,19 @@ const startupSchema = z.object({
             message: 'Apenas startups de Florianópolis são permitidas'
         }),
 
+    segmento_turismo: z
+        .enum([
+            'Hospedagem',
+            'Transporte',
+            'Experiencias',
+            'Marketplace',
+            'Tecnologia_Hotelaria',
+            'Tecnologia_Agencias',
+            'Eventos',
+            'Turismo_Sustentavel',
+            'Outro'
+        ]),
+
     modelo_negocio: z
         .string()
         .min(3, 'Modelo de negócio obrigatório'),

@@ -36,6 +36,21 @@ const ModelStartups = connection.define('Startup', {
         defaultValue: 'Florianópolis'
     },
 
+    segmento_turismo: {
+        type: DataTypes.ENUM(
+            'Hospedagem',
+            'Transporte',
+            'Experiencias',
+            'Marketplace',
+            'Tecnologia_Hotelaria',
+            'Tecnologia_Agencias',
+            'Eventos',
+            'Turismo_Sustentavel',
+            'Outro'
+        ),
+        allowNull: false
+    },
+
     modelo_negocio: {
         type: DataTypes.STRING,
         allowNull: false

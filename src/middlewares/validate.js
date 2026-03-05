@@ -6,10 +6,12 @@ const validate = (schema) => async (req, res, next) => {
 
         next();
     } catch (error) {
+        const issues = error.issues || error.errors || [];
+
         return res.status(400).json({
             message: 'Erro de validação',
-            errors: error.errors?.map(err => ({
-                field: err.path[0],
+            errors: issues.map(err => ({
+                field: err.path.join('.'),
                 message: err.message
             }))
         });

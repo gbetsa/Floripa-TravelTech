@@ -7,7 +7,8 @@ const startupSchema = z.object({
 
     cnpj: z
         .string()
-        .min(14, 'CNPJ inválido'),
+        .min(14, 'CNPJ inválido')
+        .max(14, 'CNPJ inválido'),
 
     fundador: z
         .string()

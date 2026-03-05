@@ -82,6 +82,10 @@ router.delete(
  *               $ref: '#/components/schemas/Startup'
  *       400:
  *         description: Erro de validação
+ *       409:
+ *         description: Já existe uma startup cadastrada com esse CNPJ
+ *       500:
+ *         description: Erro interno ao cadastrar startup
  */
 /**
  * @swagger
@@ -98,6 +102,10 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
 */
 /**
  * @swagger
@@ -122,6 +130,8 @@ router.delete(
  *               $ref: '#/components/schemas/Startup'
  *       404:
  *         description: Startup não encontrada
+ *       500:
+ *         description: Erro interno ao listar startup
  */
 /**
  * @swagger
@@ -152,6 +162,8 @@ router.delete(
  *         description: Startup atualizada com sucesso
  *       404:
  *         description: Startup não encontrada
+ *       500:
+ *         description: Erro interno ao atualizar startup
  */
 /**
  * @swagger
@@ -168,10 +180,12 @@ router.delete(
  *           example: bd7d56e1-f633-49cb-a083-10c426b6050b
  *         description: ID da startup
  *     responses:
- *       204:
+ *       200:
  *         description: Startup excluída com sucesso
  *       404:
  *         description: Startup não encontrada
+ *       500:
+ *         description: Erro interno ao remover startup
  */
 /**
  * @swagger
@@ -186,6 +200,10 @@ router.delete(
  *           application/json:
  *             schema:
  *               type: object
+ *       404:
+ *         description: Não foi possível gerar estatísticas
+ *       500:
+ *         description: Erro interno ao gerar estatísticas
  */
 /**
  * @swagger
@@ -209,6 +227,10 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
+ *       400:
+ *         description: Parâmetro nome obrigatório
+ *       500:
+ *         description: Erro interno ao buscar startup
  */
 /**
  * @swagger
@@ -232,6 +254,10 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
 */
 /**
  * @swagger
@@ -255,7 +281,11 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
- */
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
+*/
 /**
  * @swagger
  * /api/startup?ano_fundacao=2024:
@@ -278,7 +308,11 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
- */
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
+*/
 /**
  * @swagger
  * /api/startup?segmento_turismo=Ideação:
@@ -301,7 +335,11 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
- */
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
+*/
 /**
  * @swagger
  * /api/startup?modelo_negocio=B2B:
@@ -324,7 +362,11 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
- */
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
+*/
 /**
  * @swagger
  * /api/startup?page=1&limit=10:
@@ -353,6 +395,10 @@ router.delete(
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Startup'
- */
+ *       404:
+ *         description: Não foi possível listar startups
+ *       500:
+ *         description: Erro interno ao listar startups
+*/
 
 module.exports = router;

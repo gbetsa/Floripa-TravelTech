@@ -53,9 +53,6 @@ const startupServices = {
                 offset
             });
 
-            if (startups.length === 0) {
-                throw new Error('ERRO_LISTAR_STARTUPS');
-            }
             return startups;
         } catch (error) {
             throw new Error('ERRO_LISTAR_STARTUPS');

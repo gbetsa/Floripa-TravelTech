@@ -14,13 +14,37 @@ const startupServices = {
         }
     },
 
-    async findAll() {
+    async findAll(filters = {}) {
         try {
+            const where = {};
+
+            if (filters.estagio) {
+                where.estagio = filters.estagio;
+            }
+
+            if (filters.status) {
+                where.status = filters.status;
+            }
+
+            if (filters.ano_fundacao) {
+                where.ano_fundacao = filters.ano_fundacao;
+            }
+
+            if (filters.modelo_negocio) {
+                where.modelo_negocio = filters.modelo_negocio;
+            }
+
+
             const startups = await ModelStartups.findAll({
+                where,
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 }
             });
+
+            if (startups.length === 0) {
+                throw new Error('ERRO_LISTAR_STARTUPS');
+            }
             return startups;
         } catch (error) {
             throw new Error('ERRO_LISTAR_STARTUPS');

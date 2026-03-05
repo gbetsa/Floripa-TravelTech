@@ -27,7 +27,9 @@ const startupControllers = {
 
     async findAll(req, res) {
         try {
-            const startups = await startupServices.findAll();
+            const filters = req.query;
+
+            const startups = await startupServices.findAll(filters);
             return res.status(200).json(startups);
         } catch (error) {
             if (error.message === 'ERRO_LISTAR_STARTUPS') {

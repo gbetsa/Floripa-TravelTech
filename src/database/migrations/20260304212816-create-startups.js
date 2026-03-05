@@ -15,6 +15,11 @@ module.exports = {
         allowNull: false
       },
 
+      descricao: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+
       cnpj: {
         type: Sequelize.STRING,
         allowNull: false,

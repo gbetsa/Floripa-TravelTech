@@ -14,6 +14,11 @@ const ModelStartups = connection.define('Startup', {
         allowNull: false
     },
 
+    descricao: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+
     cnpj: {
         type: DataTypes.STRING,
         allowNull: false,

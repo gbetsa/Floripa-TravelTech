@@ -5,10 +5,14 @@ const startupSchema = z.object({
         .string()
         .min(3, 'Nome deve ter pelo menos 3 caracteres'),
 
+    descricao: z
+        .string()
+        .min(5, 'Descrição deve ter pelo menos 5 caracteres')
+        .max(500, 'Descrição deve ter no máximo 500 caracteres'),
+
     cnpj: z
         .string()
-        .min(14, 'CNPJ inválido')
-        .max(14, 'CNPJ inválido'),
+        .length(14, 'CNPJ inválido'),
 
     fundador: z
         .string()

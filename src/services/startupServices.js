@@ -1,5 +1,7 @@
 const ModelStartups = require('../models/startups');
 
+const { Sequelize } = require('sequelize');
+
 const startupServices = {
     async create(data) {
         try {
@@ -99,6 +101,38 @@ const startupServices = {
             return startup;
         } catch (error) {
             throw new Error('ERRO_REMOVER_STARTUP');
+        }
+    },
+
+    async stats() {
+        try {
+
+            const total = await ModelStartups.count();
+
+            const porEstagio = await ModelStartups.findAll({
+                attributes: [
+                    'estagio',
+                    [Sequelize.fn('COUNT', Sequelize.col('estagio')), 'total']
+                ],
+                group: ['estagio']
+            });
+
+            const porStatus = await ModelStartups.findAll({
+                attributes: [
+                    'status',
+                    [Sequelize.fn('COUNT', Sequelize.col('status')), 'total']
+                ],
+                group: ['status']
+            });
+
+            return {
+                total_startups: total,
+                por_estagio: porEstagio,
+                por_status: porStatus
+            };
+
+        } catch (error) {
+            throw new Error('ERRO_GERAR_ESTATISTICAS');
         }
     }
 }

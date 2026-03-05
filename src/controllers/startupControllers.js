@@ -102,6 +102,22 @@ const startupControllers = {
                 message: 'Erro interno ao remover startup'
             });
         }
+    },
+
+    async stats(req, res) {
+        try {
+            const stats = await startupServices.stats();
+            return res.status(200).json(stats);
+        } catch (error) {
+            if (error.message === 'ERRO_GERAR_ESTATISTICAS') {
+                return res.status(404).json({
+                    message: 'Não foi possível gerar estatísticas'
+                });
+            }
+            return res.status(500).json({
+                message: 'Erro interno ao gerar estatísticas'
+            });
+        }
     }
 }
 

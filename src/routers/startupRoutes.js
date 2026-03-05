@@ -5,6 +5,11 @@ const validate = require('../middlewares/validate');
 const startupSchema = require('../validations/startupSchema');
 const startupController = require('../controllers/startupControllers');
 
+router.get(
+    '/stats',
+    startupController.stats
+);
+
 router.post(
     '/',
     validate(startupSchema),

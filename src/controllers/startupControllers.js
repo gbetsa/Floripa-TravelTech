@@ -82,6 +82,24 @@ const startupControllers = {
                 message: 'Erro interno ao atualizar startup'
             });
         }
+    },
+
+    async remove(req, res) {
+        try {
+            const startup = await startupServices.remove(req.params.id);
+            return res.status(200).json({
+                message: 'Startup removida com sucesso'
+            });
+        } catch (error) {
+            if (error.message === 'ERRO_REMOVER_STARTUP') {
+                return res.status(404).json({
+                    message: 'Não foi possível encontrar a startup'
+                });
+            }
+            return res.status(500).json({
+                message: 'Erro interno ao remover startup'
+            });
+        }
     }
 }
 

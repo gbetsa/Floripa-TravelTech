@@ -54,6 +54,19 @@ const startupServices = {
         } catch (error) {
             throw new Error('ERRO_ATUALIZAR_STARTUP');
         }
+    },
+
+    async remove(id) {
+        try {
+            const startup = await ModelStartups.destroy({
+                where: {
+                    id
+                }
+            });
+            return startup;
+        } catch (error) {
+            throw new Error('ERRO_REMOVER_STARTUP');
+        }
     }
 }
 

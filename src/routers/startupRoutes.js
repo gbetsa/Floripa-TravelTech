@@ -27,4 +27,9 @@ router.put(
     startupController.update
 );
 
+router.delete(
+    '/:id',
+    startupController.remove
+);
+
 module.exports = router;

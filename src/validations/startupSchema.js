@@ -1,5 +1,6 @@
 const { z } = require('zod');
 
+// Validação do schema de startups
 const startupSchema = z.object({
     nome: z
         .string()

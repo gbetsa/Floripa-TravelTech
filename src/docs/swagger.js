@@ -1,6 +1,7 @@
 const swaggerJsdoc = require('swagger-jsdoc');
 APP_PORT = process.env.APP_PORT;
 
+// Configuração do Swagger
 const options = {
     definition: {
         openapi: '3.0.0',
@@ -37,7 +38,7 @@ const options = {
                             example: 'Nova Startup',
                         },
                         descricao: {
-                            type: 'string',
+                            type: 'text',
                             description: 'Descrição da startup',
                             example: 'Uma startup inovadora.',
                         },
@@ -63,7 +64,7 @@ const options = {
                         },
                         segmento_turismo: {
                             type: 'string',
-                            enum: ['Hospedagem', 'Transporte', 'Alimentação', 'Atrativos', 'Eventos', 'Outros'],
+                            enum: ['Hospedagem', 'Transporte', 'Experiencias', 'Marketplace', 'Tecnologia_Hotelaria', 'Tecnologia_Agencias', 'Eventos', 'Turismo_Sustentavel', 'Outro'],
                             description: 'Segmento da startup',
                             example: 'Hospedagem',
                         },
@@ -74,7 +75,7 @@ const options = {
                         },
                         estagio: {
                             type: 'string',
-                            enum: ['Ideação', 'Validação', 'Operação', 'Tração', 'Scale-up'],
+                            enum: ['Ideação', 'MVP', 'Tração', 'Escala'],
                             description: 'Estágio da startup',
                             example: 'Ideação',
                         },
@@ -86,7 +87,7 @@ const options = {
                         status: {
                             type: 'string',
                             description: 'Status da startup',
-                            example: 'Ativa',
+                            example: 'Ativo',
                         },
                         createdAt: {
                             type: 'string',

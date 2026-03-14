@@ -3,11 +3,14 @@ const ModelStartups = require('../models/startups');
 const { Sequelize, Op } = require('sequelize');
 
 const startupServices = {
+    // Service para criar uma nova startup
     async create(data) {
         try {
+            // Cria um novo registro de startup no banco de dados
             const startup = await ModelStartups.create(data);
             return startup;
         } catch (error) {
+            // Trata o erro de CNPJ duplicado especificamente
             if (error.name === 'SequelizeUniqueConstraintError') {
                 throw new Error('CNPJ_DUPLICADO');
             }
@@ -16,10 +19,12 @@ const startupServices = {
         }
     },
 
+    // Service para listar todas as startups com filtros opcionais
     async findAll(filters = {}) {
         try {
             const where = {};
 
+            // Filtros opcionais
             if (filters.estagio) {
                 where.estagio = filters.estagio;
             }
@@ -40,6 +45,7 @@ const startupServices = {
                 where.modelo_negocio = filters.modelo_negocio;
             }
 
+            // Paginação e ordenação
             const page = parseInt(filters.page) || 1;
             const limit = parseInt(filters.limit) || 10;
             const offset = (page - 1) * limit;
@@ -47,6 +53,7 @@ const startupServices = {
             const orderField = filters.orderBy || 'createdAt';
             const orderDirection = filters.orderDirection || 'DESC';
 
+            // Executa a busca com filtros, paginação e ordenação
             const startups = await ModelStartups.findAll({
                 where,
                 attributes: {
@@ -67,6 +74,7 @@ const startupServices = {
         }
     },
 
+    // Service para buscar uma startup pelo ID
     async findOne(id) {
         try {
             const startup = await ModelStartups.findOne({
@@ -86,6 +94,7 @@ const startupServices = {
         }
     },
 
+    // Service para atualizar uma startup pelo ID
     async update(id, data) {
         try {
             const startup = await ModelStartups.update(data, {
@@ -102,6 +111,7 @@ const startupServices = {
         }
     },
 
+    // Service para remover uma startup pelo ID
     async remove(id) {
         try {
             const startup = await ModelStartups.destroy({
@@ -118,11 +128,13 @@ const startupServices = {
         }
     },
 
+    // Service para gerar estatísticas das startups
     async stats() {
         try {
-
+            // Total de startups
             const total = await ModelStartups.count();
 
+            // Contagem por estágio
             const porEstagio = await ModelStartups.findAll({
                 attributes: [
                     'estagio',
@@ -131,6 +143,7 @@ const startupServices = {
                 group: ['estagio']
             });
 
+            // Contagem por status
             const porStatus = await ModelStartups.findAll({
                 attributes: [
                     'status',
@@ -139,6 +152,7 @@ const startupServices = {
                 group: ['status']
             });
 
+            // Contagem por segmento de turismo
             const porSegmento = await ModelStartups.findAll({
                 attributes: [
                     'segmento_turismo',
@@ -147,20 +161,22 @@ const startupServices = {
                 group: ['segmento_turismo']
             });
 
+            // Retorna as estatísticas
             return {
                 total_startups: total,
                 por_estagio: porEstagio,
                 por_status: porStatus,
                 por_segmento: porSegmento
             };
-
         } catch (error) {
             throw new Error('ERRO_GERAR_ESTATISTICAS');
         }
     },
 
+    // Service para buscar startups por nome
     async searchByName(nome) {
         try {
+            // Busca startups por nome
             const startups = await ModelStartups.findAll({
                 where: {
                     nome: {

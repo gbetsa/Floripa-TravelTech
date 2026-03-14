@@ -13,6 +13,14 @@ Além das operações básicas de CRUD, a API disponibiliza recursos de busca, f
 
 O projeto foi desenvolvido como parte do desafio técnico da trilha **IA para DEVs**, do programa **SCTEC**, organizado pelo **SENAI/SC LAB365**.
 
+## 🎥 Vídeo Pitch
+
+Apresentação da solução desenvolvida para o desafio:
+
+🔗 [drive.google.com/file/d/1lH148wGMnYiiar-hbVh4nZyuag-POh7o/view?usp=sharing](https://drive.google.com/file/d/1lH148wGMnYiiar-hbVh4nZyuag-POh7o/view?usp=sharing)
+
+No vídeo é apresentada a proposta da aplicação, suas principais funcionalidades, uma breve demonstração do funcionamento da API e as principais decisões técnicas adotadas no desenvolvimento do projeto.
+
 ## 📌 Sobre o Desafio
 
 Este projeto foi desenvolvido como parte do **desafio prático da trilha IA para DEVs**, do programa **SCTEC**, realizado pelo **SENAI/SC LAB365**.
